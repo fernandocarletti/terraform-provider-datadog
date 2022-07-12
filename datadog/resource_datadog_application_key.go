@@ -148,7 +148,7 @@ func resourceDatadogApplicationKeyUpdate(ctx context.Context, d *schema.Resource
 	if v, ok := d.GetOk("service_account"); ok {
 		resp, httpResponse, err := datadogClientV2.ServiceAccountsApi.UpdateServiceAccountApplicationKey(authV2, v.(string), d.Id(), *buildDatadogApplicationKeyUpdateV2Struct(d))
 		if err != nil {
-			return utils.TranslateClientErrorDiag(err, httpResponse, "error updating application key")
+			return utils.TranslateClientErrorDiag(err, httpResponse, "error updating service account application key")
 		}
 		applicationKeyData := resp.GetData()
 		return updatePartialApplicationKeyState(d, &applicationKeyData)
